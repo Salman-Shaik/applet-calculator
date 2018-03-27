@@ -5,6 +5,5 @@ build.gradle
 gradle/
 gradlew
 gradlew.bat
-library/
+library/out
 settings.gradle
-src/
