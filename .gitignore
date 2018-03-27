@@ -1,9 +1,9 @@
 # Created by .ignore support plugin (hsz.mobi)
 .idea/
 .gradle/
-build.gradle
 gradle/
-gradlew
-gradlew.bat
-library/out
-settings.gradle
+library/out/
+library/src/main/resources/
+library/src/test/resources/
+build/
+
