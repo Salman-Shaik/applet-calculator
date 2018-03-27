@@ -6,36 +6,41 @@ import org.junit.Test;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
+
 public class CalculatorTest {
     Calculator calculator;
     @Before
-    public void setUp() throws Exception {
-        calculator = new Calculator();
+    public void setUp(){
+        calculator=new Calculator();
     }
 
     @Test
-    public void checkAddition() {
-
-        assertThat(calculator.add(3,5),is(8.0));
+    public void add() {
+        assertThat(calculator.add(10,20),is(30.0));
     }
 
     @Test
-    public void checkSubtraction() {
-        assertThat(calculator.subtract(10,25),is(-15.0));
+    public void subtract() {
+        assertThat(calculator.subtract(10,20),is(-10.0));
     }
 
     @Test
-    public void checkMultiplication() {
-        assertThat(calculator.multiply(11,13),is(143.0));
+    public void multiply() {
+        assertThat(calculator.multiply(10,20),is(200.0));
     }
 
     @Test
-    public void checkDivision() throws DivideByZeroException {
-        assertThat(calculator.divide(20,20),is(1.0));
+    public void divide() throws DivideByZeroException {
+        assertThat(calculator.divide(10,20),is(0.5));
     }
 
-    @Test (expected = DivideByZeroException.class)
-    public void checkDivideByZeroException() throws DivideByZeroException {
-        calculator.divide(200000,0);
+    @Test(expected = DivideByZeroException.class)
+    public void checkDivideByZero() throws DivideByZeroException {
+        calculator.divide(10,0);
+    }
+
+    @Test
+    public void modulus() {
+        assertThat(calculator.add(10,20),is(10));
     }
 }

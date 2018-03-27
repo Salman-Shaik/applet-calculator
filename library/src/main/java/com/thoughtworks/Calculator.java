@@ -17,4 +17,8 @@ public class Calculator {
         if(secondOperhand==0) throw new DivideByZeroException();
         return firstOperhand/secondOperhand;
     }
+
+    public double modulus(double firstOperhand, double secondOperhand) {
+        return firstOperhand%secondOperhand;
+    }
 }
