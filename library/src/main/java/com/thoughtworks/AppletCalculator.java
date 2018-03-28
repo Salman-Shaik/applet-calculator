@@ -68,6 +68,7 @@ public class AppletCalculator extends Applet implements ActionListener{
 
     private void clearLastChar() {
         String displayText = display.getText();
+        if(displayText.length()==0) return;
         Character lastChar =displayText.charAt(displayText.length()-1);
         display.setText(displayText.replace(""+lastChar,""));
     }
@@ -84,11 +85,21 @@ public class AppletCalculator extends Applet implements ActionListener{
 
     private void displayResult() throws DivideByZeroException {
         String displayString=display.getText();
-        if(displayString.contains("+")) display.setText(""+getResult(displayString,"+"));
-        if(displayString.contains("-")) display.setText(""+getResult(displayString,"-"));
-        if(displayString.contains("X")) display.setText(""+getResult(displayString,"X"));
-        if(displayString.contains("/")) display.setText(""+getResult(displayString,"/"));
-        if(displayString.contains("%")) display.setText(""+getResult(displayString,"%"));
+        if(displayString.contains("+")) {
+            display.setText(""+getResult(displayString.replace('+','&'),"+"));
+        }
+        if(displayString.contains("-")) {
+            display.setText(""+getResult(displayString.replace('-','&'),"-"));
+        }
+        if(displayString.contains("X")) {
+            display.setText(""+getResult(displayString.replace('X','&'),"X"));
+        }
+        if(displayString.contains("/")) {
+            display.setText(""+getResult(displayString.replace('/','&'),"/"));
+        }
+        if(displayString.contains("%")) {
+            display.setText(""+getResult(displayString.replace('%','&'),"%"));
+        }
     }
 
     private void enableDot() {
@@ -97,8 +108,8 @@ public class AppletCalculator extends Applet implements ActionListener{
 
     private double getResult(String displayString, String symbol) throws DivideByZeroException {
         Double firstOperhand,secondOperhand;
-        firstOperhand=Double.parseDouble(displayString.split(symbol)[0]);
-        secondOperhand=Double.parseDouble(displayString.split(symbol)[1]);
+        firstOperhand=Double.parseDouble(displayString.split("&")[0]);
+        secondOperhand=Double.parseDouble(displayString.split("&")[1]);
         if(symbol.equals("+")) return calculator.add(firstOperhand,secondOperhand);
         if(symbol.equals("-")) return calculator.subtract(firstOperhand,secondOperhand);
         if(symbol.equals("X")) return calculator.multiply(firstOperhand,secondOperhand);
@@ -107,7 +118,7 @@ public class AppletCalculator extends Applet implements ActionListener{
         return 0.0;
     }
     /*
-<applet code=”AppletCalculator.class” width=600 height=600>
+<applet code=”AppletCalculator.class” width=500 height=400>
 </applet>
 */
 }
